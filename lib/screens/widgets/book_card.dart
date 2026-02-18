@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../book_detail_page.dart';
 
 class BookHorizontalList extends StatelessWidget {
   const BookHorizontalList({super.key});
@@ -27,16 +28,21 @@ class BookCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 170,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              image: const DecorationImage(
-                image: NetworkImage("https://picsum.photos/200"),
-                fit: BoxFit.cover,
+          TextButton(
+            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => const BookDetailPage()));},
+            child: Container(
+              height: 170,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                image: const DecorationImage(
+                  image: NetworkImage("https://picsum.photos/200"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+
           ),
+
           const SizedBox(height: 8),
           const Text(
             "The Monk Who...",

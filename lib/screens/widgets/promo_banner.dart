@@ -12,7 +12,7 @@ class PromoBanner extends StatelessWidget {
       
         // Responsive scaling factors
         final horizontalPadding = width * 0.05;
-        final bannerHeight = width * 0.5; // dynamic height
+        final bannerHeight = width * 0.41; // dynamic height
         final titleSize = width * 0.08;
         final subtitleSize = width * 0.04;
         final imageSize = width * 0.25;
