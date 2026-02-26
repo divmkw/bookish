@@ -1,9 +1,9 @@
-import 'package:bookish/screens/signup.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 const Text(
-                  "Hey there,",
+                  "Create an account",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 8),
 
                 Text(
-                  "Welcome back! Please enter your details.",
+                  "Let's get started!",
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.6),
                     fontSize: 14,
@@ -84,7 +84,23 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 _buildTextField(
-                  hint: "User Name",
+                  hint: "Choose a username",
+                  icon: Icons.person_outline,
+                ),
+
+                const SizedBox(height: 20),
+
+                /// Email Field
+                const Text(
+                  "Email",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                _buildTextField(
+                  hint: "Enter your email",
                   icon: Icons.email_outlined,
                 ),
 
@@ -105,40 +121,9 @@ class LoginScreen extends StatelessWidget {
                   obscure: true,
                 ),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 30),
 
-                /// Remember me + Forgot Password
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: false,
-                          onChanged: (value) {},
-                          activeColor: Colors.deepPurple,
-                        ),
-                        const Text(
-                          "Remember me",
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                      ],
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 20),
-
-                /// Login Button
+                /// Sign Up Button
                 Container(
                   width: double.infinity,
                   height: 55,
@@ -161,7 +146,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: const Text(
-                      "Login",
+                      "Sign Up",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -171,38 +156,8 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 const SizedBox(height: 20),
-
-                /// Sign Up
-                Center(
-                  child: RichText(
-                    text: TextSpan(
-                      text: "Don't have an account? ",
-                      style: const TextStyle(color: Colors.white60),
-                      children: [
-                        TextSpan(
-                          text: "Sign up",
-                          style: const TextStyle(
-                            color: Colors.deepPurpleAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen(),
-                                ),
-                              );
-                            },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                const SizedBox(height: 30),
-
-                /// Social Login
+                
+                /// Or continue with
                 Center(
                   child: Column(
                     children: [
@@ -213,18 +168,54 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _socialIcon(Icons.g_mobiledata),
-                          const SizedBox(width: 20),
-                          _socialIcon(Icons.facebook),
-                          const SizedBox(width: 20),
-                          _socialIcon(Icons.apple),
-                        ],
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1F224E),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          minimumSize: const Size(double.infinity, 55),
+                        ),
+                        onPressed: () {
+                          // TODO: Implement Google Sign-In
+                        },
+                        icon: const Icon(Icons.g_mobiledata, color: Colors.white),
+                        label: const Text(
+                          "Sign up with Google",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
-                  ), 
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+
+                /// Login
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Already have an account? ",
+                      style: const TextStyle(color: Colors.white60),
+                      children: [
+                        TextSpan(
+                          text: "Login",
+                          style: const TextStyle(
+                            color: Colors.deepPurpleAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                           recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
 
                 const SizedBox(height: 30),
@@ -255,21 +246,6 @@ class LoginScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide.none,
         ),
-      ),
-    );
-  }
-
-  static Widget _socialIcon(IconData icon) {
-    return Container(
-      height: 50,
-      width: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: const Color(0xFF1F224E),
-      ),
-      child: Icon(
-        icon,
-        color: Colors.white,
       ),
     );
   }
